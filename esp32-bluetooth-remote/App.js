@@ -22,18 +22,25 @@ const buttonCodes = {
 export default function App() {
 
   const [iconColor, setIconColor] = useState('#E88873');
+  const [iconColorBluetooth, setIconColorBlueTooth] = useState('#4F7CAC');
   let intervalCheck = useRef(true);
   let intervalCheckPrev = useRef(true);
 
-  function resetIconColor() {
+  function resetIconColors() {
     setIconColor('#E88873');
+    setIconColorBlueTooth('#4F7CAC');
+  }
+
+  function setIconColors(color) {
+    setIconColor(color);
+    setIconColorBlueTooth(color);
   }
 
   async function handleClick(id) {
-    if(!intervalCheck.current && !intervalCheckPrev.current) return;
+    if(!intervalCheck.current || !intervalCheckPrev.current) return;
     
     intervalCheck.current = false;
-    setIconColor('red');
+    setIconColors('#FF3E41');
     let code = buttonCodes[id];
     let res = await axios.post('http://192.168.0.199/api', {
       cmd: code
@@ -45,7 +52,7 @@ export default function App() {
   useEffect(() => {
     const interval = setInterval(() => {
       if(intervalCheck.current && intervalCheckPrev.current) {
-        resetIconColor();
+        resetIconColors();
       }
       intervalCheckPrev.current = intervalCheck.current;
       intervalCheck.current = true;
@@ -99,22 +106,22 @@ export default function App() {
         </View>
         <View style={styles.container}>
           <TouchableOpacity style={styles.button} onPress={() => handleClick('bt')}>
-            <Feather style={[styles.icon, {color: iconColor}]} name='bluetooth'></Feather>
+            <Feather style={[styles.icon, {color: iconColorBluetooth}]} name='bluetooth'></Feather>
           </TouchableOpacity>
         </View>
         <View style={styles.container}>
           <TouchableOpacity style={styles.button} onPress={() => handleClick('play')}>
-            <Feather style={[styles.icon, {color: iconColor}]} name='play'></Feather>
+            <Feather style={[styles.icon, {color: iconColorBluetooth}]} name='play'></Feather>
           </TouchableOpacity>
         </View>
         <View style={styles.container}>
           <TouchableOpacity style={styles.button} onPress={() => handleClick('prev')}>
-            <Feather style={[styles.icon, {color: iconColor}]} name='skip-back'></Feather>
+            <Feather style={[styles.icon, {color: iconColorBluetooth}]} name='skip-back'></Feather>
           </TouchableOpacity>
         </View>
         <View style={styles.container}>
           <TouchableOpacity style={styles.button} onPress={() => handleClick('next')}>
-            <Feather style={[styles.icon, {color: iconColor}]} name='skip-forward'></Feather>
+            <Feather style={[styles.icon, {color: iconColorBluetooth}]} name='skip-forward'></Feather>
           </TouchableOpacity>
         </View>
       </View>
