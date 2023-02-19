@@ -11,3 +11,6 @@ For this to work the sender has to be placed in front of the controlling speaker
 The PIN used for data transfer to the IR Sender is GPIO13.
 
 The ESP is configured to use the static IP-Address `192.168.0.199`, if this doesn't match your WiFi configuration you have to change the IP in the `main.cpp` file as well as in the react project in the `App.js` file in the `handleClick` function.
+
+## EXPO
+![Preview](https://github.com/DichterDev/ESP32-Edifier1280DB-BluetoothRemote/blob/c4cf2af3167430dcaaec3003f1ce98542d482110/react-bluetooth-remote/assets/EXPO-Preview.png)
