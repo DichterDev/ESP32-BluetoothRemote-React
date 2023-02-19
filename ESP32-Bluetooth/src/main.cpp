@@ -12,8 +12,8 @@ String request;
 DynamicJsonDocument doc(200);
 AsyncWebServer server(80);
 
-const char* ssid = "UPC4103056";
-const char* password = "xBc3ytzwrtMz";
+const char* ssid = "WIFI_NAME";
+const char* password = "WIFI_PASSWORDS";
 
 IPAddress local_IP(192, 168, 0, 199);
 // Set your Gateway IP address
