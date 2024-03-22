@@ -147,7 +147,7 @@ void setup() {
 
   Serial.print("Connecting to ");
   Serial.println(WLAN.SSID);
-  WiFi.begin(WLAN.SSID, WLAN.SSID);
+  WiFi.begin(WLAN.SSID, WLAN.PASSWORD);
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
     Serial.print(".");
