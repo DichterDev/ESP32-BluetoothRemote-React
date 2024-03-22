@@ -6,14 +6,12 @@
 #include <SPIFFS.h>
 #include "RemoteCodes.h"
 #include "PinDefinitions.h" // Define macros for input and output pin etc.
+#include "DotEnv.h"
 
 // Web-server
-String request;
+String request = "";
 DynamicJsonDocument doc(200);
 AsyncWebServer server(80);
-
-const char* ssid = "WIFI_NAME";
-const char* password = "WIFI_PASSWORDS";
 
 IPAddress local_IP(192, 168, 0, 199);
 // Set your Gateway IP address
@@ -72,6 +70,7 @@ void irSendNECblk( uint32_t code, uint8_t irLedPin, uint8_t freqKhz = 38, bool i
 
 void sendSignal(uint8_t id) {
   Serial.println(id);
+
   switch (id)
   {
     case 1:
@@ -147,8 +146,8 @@ void setup() {
   Serial.begin(115200);
 
   Serial.print("Connecting to ");
-  Serial.println(ssid);
-  WiFi.begin(ssid, password);
+  Serial.println(WLAN.SSID);
+  WiFi.begin(WLAN.SSID, WLAN.SSID);
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
     Serial.print(".");
